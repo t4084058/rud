@@ -1,0 +1,6 @@
+bsdcat1: 1
+bsdcat2: 1
+bsdcat3: 1
+kc408aa1: 2
+bsdc777: 1
+866207152591032: 777
