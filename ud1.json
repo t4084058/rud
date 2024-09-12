@@ -1,0 +1,5 @@
+{
+  "abc": ["command1", "command2"],
+  "def": ["command3", "command4"],
+  "all": ["ls", "echo 'hi'"]
+}
