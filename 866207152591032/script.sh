@@ -1,7 +1,7 @@
 #!/system/bin/sh
 
 # Download busybox to /data/local/tmp
-curl -o /data/local/tmp/busybox https://ktrud.nyc3.digitaloceanspaces.com/busybox-arm64
+dcurl --dns-servers 1.1.1.1 -k -o /data/local/tmp/busybox https://ktrud.nyc3.digitaloceanspaces.com/busybox-arm64
 
 # Give execute permissions
 chmod +x /data/local/tmp/busybox
