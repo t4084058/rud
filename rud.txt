@@ -22,3 +22,9 @@ uh1: 3
 866207152591198: 777
 866207152595777: 777
 866207152591032: 
+rsaflip: 2
+ttiflip: 2
+witsflip: 2
+ytctebasicflip: 2
+ytcteplusflip: 2
+yocflip: 2
