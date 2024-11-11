@@ -29,3 +29,7 @@ ytctebasicflip: 2
 ytcteplusflip: 2
 yocflip: 2
 dwtexecall
+dwt1: 2
+dwt2: 2
+dwt3: 2
+dwt4: 2
