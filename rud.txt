@@ -11,11 +11,11 @@ bsdc10: 4
 bsdc11: 4
 bsdc12: 4
 bsdc13: 4
-bsdc14: 4
-bsdc15: 4
-bsdc16: 4
+bsdc14: 5
+bsdc15: 5
+bsdc16: 5
 bsdc17: 4
-bsdc18: 4
+bsdc18: 5
 bsdc19: 4
 bsdc30: 4
 uh1: 4
