@@ -30,6 +30,7 @@ while IFS= read -r line; do
 
         # Split packages by ';' and process each with pm commands.
         echo "$packages" | tr ';' '\n' | while read -r package; do
+            echo "$package"
             su -c pm disable "$package"
             su -c pm hide "$package"
             su -c pm suspend "$package"
