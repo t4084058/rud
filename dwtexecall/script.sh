@@ -15,16 +15,16 @@ OUTPUT_FILE="/data/local/tmp/sheet.csv"
 # 1. Download the CSV file using dcurl.
 dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" | tr -d '\r' > "$OUTPUT_FILE"
 
-
 imei2=$(service call iphonesubinfo 4 i32 1 | awk -F "'" '{print $2}' | sed '1 d' | tr -d '.' | awk '{print}' ORS= | tr -d '[:space:]')
 
+# Initialize an empty string to store the list of blocked packages.
+blocked_packages=""
 
 # 2. Read the CSV file line by line.
 while IFS= read -r line; do
     # Extract the first column (IMEI) assuming CSV is comma-separated.
     imei="$(echo "$line" | cut -d',' -f1)"
 
-    
     if [ "$imei" = "$imei2" ]; then
         # Extract everything after the first column (packages).
         packages="$(echo "$line" | cut -d',' -f2-)"
@@ -37,9 +37,22 @@ while IFS= read -r line; do
             su -c pm disable "$package"
             su -c pm hide "$package"
             su -c pm suspend "$package"
+
+            # Append the package name to the blocked_packages string.
+            if [ -z "$blocked_packages" ]; then
+                blocked_packages="$package"
+            else
+                blocked_packages="$blocked_packages;$package"
+            fi
         done
         unset IFS # Restore the default IFS after splitting.
-
     fi
-
 done < "$OUTPUT_FILE"
+
+# 3. Update the `blocked_apps` setting with the list of blocked packages.
+if [ -n "$blocked_packages" ]; then
+    settings put global blocked_apps "$blocked_packages"
+    echo "Updated blocked_apps setting with: $blocked_packages"
+else
+    echo "No packages to block for the current IMEI."
+fi
