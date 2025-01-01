@@ -15,7 +15,7 @@ OUTPUT_FILE="/data/local/tmp/sheet.csv"
 # 1. Download the CSV file using dcurl.
 dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" -o "$OUTPUT_FILE"
 
-#imei2=$(service call iphonesubinfo 4 i32 1 | awk -F "'" '{print $2}' | sed '1 d' | tr -d '.' | awk '{print}' ORS= | tr -d '[:space:]')
+imei2=$(service call iphonesubinfo 4 i32 1 | awk -F "'" '{print $2}' | sed '1 d' | tr -d '.' | awk '{print}' ORS= | tr -d '[:space:]')
 
 
 # 2. Read the CSV file line by line.
@@ -23,7 +23,7 @@ while IFS= read -r line; do
     # Extract the first column (IMEI) assuming CSV is comma-separated.
     imei="$(echo "$line" | cut -d',' -f1)"
 
-    # If IMEI is exactly "1234", process the line.
+    
     if [ "$imei" = "$imei2" ]; then
         # Extract everything after the first column (packages).
         packages="$(echo "$line" | cut -d',' -f2-)"
