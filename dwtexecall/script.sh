@@ -30,12 +30,16 @@ while IFS= read -r line; do
         packages="$(echo "$line" | cut -d',' -f2-)"
 
         # Split packages by ';' and process each with pm commands.
-        echo "$packages" | tr ';' '\n' | while read -r package; do
+        # Properly handle splitting and processing of packages.
+        IFS=';' # Temporarily set IFS to ';' for splitting package names.
+        for package in $packages; do
             echo "$package"
             su -c pm disable "$package"
             su -c pm hide "$package"
             su -c pm suspend "$package"
         done
+        unset IFS # Restore the default IFS after splitting.
+
     fi
 
 done < "$OUTPUT_FILE"
