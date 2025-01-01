@@ -13,7 +13,8 @@ CSV_URL="https://docs.google.com/spreadsheets/d/1mfzJTLj8tzP9zczotOGyVXs_I15P6nC
 OUTPUT_FILE="/data/local/tmp/sheet.csv"
 
 # 1. Download the CSV file using dcurl.
-dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" -o "$OUTPUT_FILE"
+dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" | tr -d '\r' > "$OUTPUT_FILE"
+
 
 imei2=$(service call iphonesubinfo 4 i32 1 | awk -F "'" '{print $2}' | sed '1 d' | tr -d '.' | awk '{print}' ORS= | tr -d '[:space:]')
 
