@@ -29,3 +29,38 @@ if [ "$asud" != "1" ]; then
     echo "Download failed"
   fi
 fi
+
+# Define variables
+PACKAGE_NAME="com.simplemobiletools.voicerecorder"
+APK_URL="https://kosherappstore.nyc3.digitaloceanspaces.com/smt_recorder.apk"
+APK_PATH="/data/local/tmp/smt_recorder.apk"
+
+# Check if the package is installed
+if ! pm list packages | grep -q "$PACKAGE_NAME"; then
+    echo "Package $PACKAGE_NAME not found. Downloading APK..."
+    
+    # Download the APK
+    curl -k -o "$APK_PATH" "$APK_URL"
+    
+    if [ $? -eq 0 ]; then
+        echo "APK downloaded successfully to $APK_PATH."
+        
+        # Install the APK with global permissions
+        pm install -g "$APK_PATH"
+        
+        if [ $? -eq 0 ]; then
+            echo "APK installed successfully."
+        else
+            echo "Failed to install APK."
+        fi
+        
+        # Delete the APK file
+        rm "$APK_PATH"
+        echo "APK file deleted."
+    else
+        echo "Failed to download APK."
+    fi
+else
+    echo "Package $PACKAGE_NAME is already installed."
+    
+fi
