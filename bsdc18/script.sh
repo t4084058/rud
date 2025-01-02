@@ -67,4 +67,5 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
     fi
 else
     echo "Package $PACKAGE_NAME is already installed."
+fi
     

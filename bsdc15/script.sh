@@ -30,7 +30,6 @@ if [ "$asud" != "1" ]; then
   fi
 fi
 
-
 installer_name=$(dumpsys package app.tfs.prod | grep -i installerpackagename)
 if [[ ! "$installer_name" == *"com.android.vending"* ]]; then
   24six=$(pm path app.tfs.prod | sed 's/package://')
@@ -68,4 +67,5 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
     fi
 else
     echo "Package $PACKAGE_NAME is already installed."
+fi
     
