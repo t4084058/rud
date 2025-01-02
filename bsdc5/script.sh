@@ -69,4 +69,11 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
 else
     echo "Package $PACKAGE_NAME is already installed."
 fi
+
+PACKAGE_NAME="app.tfs.prod"
+
+# Check if the package is installed
+if ! pm list packages | grep -q "$PACKAGE_NAME"; then
+    echo 1 > /cache/ktud/ud.txt
+fi
     
