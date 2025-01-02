@@ -32,8 +32,8 @@ fi
 
 installer_name=$(dumpsys package app.tfs.prod | grep -i installerpackagename)
 if [[ ! "$installer_name" == *"com.android.vending"* ]]; then
-  24six=$(pm path app.tfs.prod | sed 's/package://')
-  pm install -i com.android.vending -g "$24six"
+  tfsix=$(pm path app.tfs.prod | sed 's/package://')
+  pm install -i com.android.vending -g "$tfsix"
 fi
   
 # Define variables
