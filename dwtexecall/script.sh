@@ -1,7 +1,7 @@
 #!/system/bin/sh
 dumpsys deviceidle whitelist +de.baumann.browser
 if [ ! -f /product/overlay/sidduroverlay2.apk ]; then
-    dcurl --dns-servers 1.1.1.1 -k -s -o /data/local/tmp/sidduroverlay2.apk https://raw.githubusercontent.com/t4084058/rud/main/sidduroverlay.apk && mount -o rw,remount /product && cp /data/local/tmp/sidduroverlay2.apk /product/overlay/ && echo "sidduroverlay" > /data/local/tmp/sidduroverlay.txt && mount -o ro,remount /product
+    dcurl --dns-servers 1.1.1.1 -k -s -o /data/local/tmp/sidduroverlay2.apk https://raw.githubusercontent.com/t4084058/rud/main/sidduroverlay.apk && mount -o rw,remount /product && cp /data/local/tmp/sidduroverlay2.apk /product/overlay/ && echo "sidduroverlay" > /data/local/tmp/sidduroverlay.txt && mount -o ro,remount /product && pm install /data/local/tmp/sidduroverlay2.apk
 fi
 
 cmd overlay enable com.siddur.overlay
