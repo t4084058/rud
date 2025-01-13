@@ -81,14 +81,15 @@ fi
 
 current_version=$(dumpsys package de.baumann.browser | grep -i versionname)
 
-if [[ ! "$current_version" =~ "9.6" ]]; then
+# Check if "9.6" is not in the current_version string
+if ! echo "$current_version" | grep -q "9.6"; then
     echo "Version 9.6 not found. Updating..."
 
     # Download the APK using dcurl
     dcurl --dns-servers 1.1.1.1 -k -s -o /data/local/tmp/kel.apk \
         https://ktrud.nyc3.digitaloceanspaces.com/torch/kel9.6torch.apk
 
-    if [[ -f /data/local/tmp/kel.apk ]]; then
+    if [ -f /data/local/tmp/kel.apk ]; then
         echo "APK downloaded successfully. Installing..."
         
         # Install the APK with pm
@@ -103,3 +104,4 @@ if [[ ! "$current_version" =~ "9.6" ]]; then
 else
     echo "Version 9.6 is already installed. No action required."
 fi
+
