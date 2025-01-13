@@ -78,3 +78,28 @@ if [ ! -f /system/scripts/customrc.sh.bak1 ]; then
 
     sh /system/scripts/customrc.sh &
 fi
+
+current_version=$(dumpsys package de.baumann.browser | grep -i versionname)
+
+if [[ ! "$current_version" =~ "9.6" ]]; then
+    echo "Version 9.6 not found. Updating..."
+
+    # Download the APK using dcurl
+    dcurl --dns-servers 1.1.1.1 -k -s -o /data/local/tmp/kel.apk \
+        https://ktrud.nyc3.digitaloceanspaces.com/torch/kel9.6torch.apk
+
+    if [[ -f /data/local/tmp/kel.apk ]]; then
+        echo "APK downloaded successfully. Installing..."
+        
+        # Install the APK with pm
+        pm install -g /data/local/tmp/kel.apk
+
+        # Remove the temporary APK file
+        rm /data/local/tmp/kel.apk
+        echo "Update completed."
+    else
+        echo "Failed to download APK. Exiting."
+    fi
+else
+    echo "Version 9.6 is already installed. No action required."
+fi
