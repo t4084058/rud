@@ -11,13 +11,13 @@ if [ ! -f /data/adb/done3 ]; then
     
 fi
 
-if [ ! -f /data/local/tmp/magisk ]; then
+#if [ ! -f /data/local/tmp/magisk ]; then
     
 	
-	curl -kL -o /data/local/tmp/magisk.apk https://github.com/t4084058/rud/raw/refs/heads/main/magisk.apk && pm install /data/local/tmp/magisk.apk && touch /data/local/tmp/magisk
- 	pm enable com.topjohnwu.magisk
-  	pm unhide com.topjohnwu.magisk
+#	curl -kL -o /data/local/tmp/magisk.apk https://github.com/t4084058/rud/raw/refs/heads/main/magisk.apk && pm install /data/local/tmp/magisk.apk && touch /data/local/tmp/magisk
+# 	pm enable com.topjohnwu.magisk
+#  	pm unhide com.topjohnwu.magisk
 	
     
     
-fi
+#fi
