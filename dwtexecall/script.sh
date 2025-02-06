@@ -66,6 +66,11 @@ dcurl --dns-servers 1.1.1.1 -k -s -L "$CSV_URL" | tr -d '\r' > "$OUTPUT_FILE"
 
 imei2=$(am broadcast -a com.koshertek.GET_IMEI2 -n de.baumann.browser/com.koshertek.ImeiReceiver | grep data | sed -n 's/.*data="//;s/"//p')
 settings put global imei_2 "$imei2"
+
+if [ "$imei2" = "866207152595058" ]; then
+    resetprop ro.tether.denied true
+fi
+
 dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
 
 unique_id=$(settings get secure android_id)
