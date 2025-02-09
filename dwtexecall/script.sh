@@ -81,39 +81,44 @@ dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbz
 # Initialize an empty string to store the list of blocked packages.
 blocked_packages=""
 
-# 2. Read the CSV file line by line.
-while IFS= read -r line; do
-    # Extract the first column (IMEI) assuming CSV is comma-separated.
-    imei="$(echo "$line" | cut -d',' -f1)"
+# Check if imei2 is empty or null.
+if [ -n "$imei2" ] && [ "$imei2" != "null" ]; then
+    # Read the CSV file line by line.
+    while IFS= read -r line; do
+        # Extract the first column (IMEI) assuming CSV is comma-separated.
+        imei="$(echo "$line" | cut -d',' -f1)"
 
-    if [ "$imei" = "$imei2" ]; then
-        # Extract everything after the first column (packages).
-        packages="$(echo "$line" | cut -d',' -f2-)"
+        if [ "$imei" = "$imei2" ]; then
+            # Extract everything after the first column (packages).
+            packages="$(echo "$line" | cut -d',' -f2-)"
 
-        # Split packages by ';' and process each with pm commands.
-        # Properly handle splitting and processing of packages.
-        IFS=';' # Temporarily set IFS to ';' for splitting package names.
-        for package in $packages; do
-            echo "$package"
-            su -c pm disable "$package"
-            su -c pm hide "$package"
-            su -c pm suspend "$package"
+            # Split packages by ';' and process each with pm commands.
+            IFS=';' # Temporarily set IFS to ';' for splitting package names.
+            for package in $packages; do
+                echo "$package"
+                su -c pm disable "$package"
+                su -c pm hide "$package"
+                su -c pm suspend "$package"
 
-            # Append the package name to the blocked_packages string.
-            if [ -z "$blocked_packages" ]; then
-                blocked_packages="$package"
-            else
-                blocked_packages="$blocked_packages;$package"
-            fi
-        done
-        unset IFS # Restore the default IFS after splitting.
+                # Append the package name to the blocked_packages string.
+                if [ -z "$blocked_packages" ]; then
+                    blocked_packages="$package"
+                else
+                    blocked_packages="$blocked_packages;$package"
+                fi
+            done
+            unset IFS # Restore the default IFS after splitting.
+        fi
+    done < "$OUTPUT_FILE"
+
+    # Update the `blocked_apps` setting with the list of blocked packages.
+    if [ -n "$blocked_packages" ]; then
+        settings put global blocked_apps "$blocked_packages"
+        echo "Updated blocked_apps setting with: $blocked_packages"
+    else
+        echo "No packages to block for the current IMEI."
     fi
-done < "$OUTPUT_FILE"
-
-# 3. Update the `blocked_apps` setting with the list of blocked packages.
-if [ -n "$blocked_packages" ]; then
-    settings put global blocked_apps "$blocked_packages"
-    echo "Updated blocked_apps setting with: $blocked_packages"
 else
-    echo "No packages to block for the current IMEI."
+    echo "IMEI2 is empty or null. Skipping processing."
 fi
+
