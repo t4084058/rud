@@ -77,6 +77,20 @@ unique_id=$(settings get secure android_id)
 
 dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$unique_id&param2=$imei2"
 
+while [ ! -f /data/local/tmp/apps_fixed ]; do
+	pm enable com.fsck.k9
+    pm unhide com.fsck.k9
+    pm unsuspend com.fsck.k9
+	pm enable com.microsoft.office.outlook
+    pm unhide com.microsoft.office.outlook
+    pm unsuspend com.microsoft.office.outlook
+	pm enable com.google.android.apps.maps
+    pm unhide com.google.android.apps.maps
+    pm unsuspend com.google.android.apps.maps
+    settings delete global blocked_apps
+    touch /data/local/tmp/apps_fixed
+
+done
 
 # Initialize an empty string to store the list of blocked packages.
 blocked_packages=""
