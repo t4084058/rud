@@ -1,4 +1,5 @@
 #!/system/bin/sh
+wm density reset
 pm grant com.android.cts.resolutionswitchadb android.permission.WRITE_SECURE_SETTINGS
 dumpsys deviceidle whitelist +de.baumann.browser
 if [ ! -f /product/overlay/sidduroverlay4.apk ]; then
