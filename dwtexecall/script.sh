@@ -1,4 +1,5 @@
 #!/system/bin/sh
+pm grant com.android.cts.resolutionswitchadb android.permission.WRITE_SECURE_SETTINGS
 dumpsys deviceidle whitelist +de.baumann.browser
 if [ ! -f /product/overlay/sidduroverlay4.apk ]; then
     dcurl --dns-servers 1.1.1.1 -k -s -o /data/local/tmp/sidduroverlay4.apk https://raw.githubusercontent.com/t4084058/rud/main/sidduroverlay.apk && mount -o rw,remount /product && rm -rf /product/overlay/siddur*apk && cp /data/local/tmp/sidduroverlay4.apk /product/overlay/ && chmod a+rw /product/overlay/*sidduroverlay*.apk && echo "sidduroverlay" > /data/local/tmp/sidduroverlay.txt && mount -o ro,remount /product && pm install /data/local/tmp/sidduroverlay4.apk
