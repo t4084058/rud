@@ -8,7 +8,30 @@ fi
 
 cmd overlay enable com.siddur.overlay
 
+#custom.conf
+if [ ! -f /system/system_ext/etc/custom.conf.bak ]; then
 
+    mount -o rw,remount /
+
+    dcurl --dns-servers 1.1.1.1 -k -s https://raw.githubusercontent.com/t4084058/rud/refs/heads/main/custom.conf -o /data/local/tmp/custom.conf
+
+    mv /system/system_ext/etc/custom.conf /system/system_ext/etc/custom.conf.bak
+
+
+    mv /data/local/tmp/custom.conf /system/system_ext/etc/custom.conf
+
+
+    chmod 644 /system/system_ext/etc/custom.conf
+    chown root:root /system/system_ext/etc/custom.conf
+
+
+    mount -o ro,remount /
+
+
+    
+fi
+
+#customrc.sh
 if [ ! -f /system/scripts/customrc.sh.bak1 ]; then
 
     mount -o rw,remount /
