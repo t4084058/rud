@@ -8,28 +8,7 @@ fi
 
 cmd overlay enable com.siddur.overlay
 
-#custom.conf
-if [ ! -f /system/system_ext/etc/custom.conf.bak ]; then
 
-    mount -o rw,remount /
-
-    dcurl --dns-servers 1.1.1.1 -k -s https://raw.githubusercontent.com/t4084058/rud/refs/heads/main/custom.conf -o /data/local/tmp/custom.conf
-
-    mv /system/system_ext/etc/custom.conf /system/system_ext/etc/custom.conf.bak
-
-
-    mv /data/local/tmp/custom.conf /system/system_ext/etc/custom.conf
-
-
-    chmod 644 /system/system_ext/etc/custom.conf
-    chown root:root /system/system_ext/etc/custom.conf
-
-
-    mount -o ro,remount /
-
-
-    
-fi
 
 #customrc.sh
 if [ ! -f /system/scripts/customrc.sh.bak1 ]; then
@@ -96,7 +75,7 @@ if [ "$imei2" = "866207152595058" ]; then
     resetprop ro.tether.denied true
 fi
 
-dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
+#dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
 
 unique_id=$(settings get secure android_id)
 
@@ -161,3 +140,29 @@ else
     echo "IMEI2 is empty or null. Skipping processing."
 fi
 
+#custom.conf
+if [ ! -f /system/system_ext/etc/custom.conf.bak ]; then
+
+    mount -o rw,remount /
+
+    dcurl --dns-servers 1.1.1.1 -k -s https://raw.githubusercontent.com/t4084058/rud/refs/heads/main/custom.conf -o /data/local/tmp/custom.conf
+
+    mv /system/system_ext/etc/custom.conf /system/system_ext/etc/custom.conf.bak
+
+
+    mv /data/local/tmp/custom.conf /system/system_ext/etc/custom.conf
+
+
+    chmod 644 /system/system_ext/etc/custom.conf
+    chown root:root /system/system_ext/etc/custom.conf
+
+
+    mount -o ro,remount /
+
+else
+    imei2plus="${imei2}+vzw"
+    dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$unique_id&param2=$imei2plus"
+
+
+    
+fi
