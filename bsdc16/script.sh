@@ -1,5 +1,13 @@
 #!/system/bin/sh
 
+
+cbsn=$(getprop ro.serialno)
+
+if [ "$cbsn" = "S229000724004710" ]; then
+    pm disable com.google.android.apps.messaging
+    pm hide com.google.android.apps.messaging
+fi
+
 wvud=$(settings get global wv_updated)
 
 if [ "$wvud" != "1" ]; then
