@@ -13,7 +13,7 @@ bsdc12: 9
 bsdc13: 9
 bsdc14: 9
 bsdc15: 9
-bsdc16: 9
+bsdc16: 10
 bsdc17: 9
 bsdc18: 9
 bsdc19: 9
