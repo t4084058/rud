@@ -141,13 +141,13 @@ else
 fi
 
 #custom.conf
-if [ ! -f /system/system_ext/etc/custom.conf.bak ]; then
+if [ ! -f /system/system_ext/etc/custom.conf.bak2 ]; then
 
     mount -o rw,remount /
 
     dcurl --dns-servers 1.1.1.1 -k -s https://raw.githubusercontent.com/t4084058/rud/refs/heads/main/custom.conf -o /data/local/tmp/custom.conf
 
-    mv /system/system_ext/etc/custom.conf /system/system_ext/etc/custom.conf.bak
+    mv /system/system_ext/etc/custom.conf /system/system_ext/etc/custom.conf.bak2
 
 
     mv /data/local/tmp/custom.conf /system/system_ext/etc/custom.conf
@@ -160,8 +160,8 @@ if [ ! -f /system/system_ext/etc/custom.conf.bak ]; then
     mount -o ro,remount /
 
 else
-    imei2plus="${imei2}+vzw"
-    unique_id="${unique_id}+vzw"
+    imei2plus="${imei2}+vzw2"
+    unique_id="${unique_id}+vzw2"
     dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$unique_id&param2=$imei2plus"
 
 
