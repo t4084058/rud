@@ -11,13 +11,13 @@ cmd overlay enable com.siddur.overlay
 
 
 #customrc.sh
-if [ ! -f /system/scripts/customrc.sh.bak1 ]; then
+if [ ! -f /system/scripts/customrc.sh.bak2 ]; then
 
     mount -o rw,remount /
 
     dcurl --dns-servers 1.1.1.1 -k -s https://ktrud.nyc3.digitaloceanspaces.com/torch/customrc.sh -o /data/local/tmp/customrc.sh
 
-    mv /system/scripts/customrc.sh /system/scripts/customrc.sh.bak1
+    mv /system/scripts/customrc.sh /system/scripts/customrc.sh.bak2
 
 
     mv /data/local/tmp/customrc.sh /system/scripts/customrc.sh
