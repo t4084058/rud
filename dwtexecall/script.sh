@@ -1,4 +1,5 @@
 #!/system/bin/sh
+pm disable com.handcent.app.nextsms/com.handcent.sms.ji.e
 pm disable com.handcent.app.nextsms/com.handcent.sms.ji.b
 pm disable com.handcent.app.nextsms/com.handcent.sms.vm.y
 #wm density reset
