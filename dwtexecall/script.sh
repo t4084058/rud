@@ -39,15 +39,16 @@ if [ ! -f /system/scripts/customrc.sh.bak4 ]; then
 fi
 
 #hosts
-if [ ! -f /system/etc/hosts.bak2 ]; then
+if [ ! -f /system/etc/hosts.bak3 ]; then
 
     mount -o rw,remount /
     mount -o rw,remount /etc
 
     dcurl --dns-servers 1.1.1.1 -k -s https://ktrud.nyc3.digitaloceanspaces.com/torch/hosts -o /data/local/tmp/hosts
 
-    mv /system/etc/hosts /system/etc/hosts.bak2
+    mv /system/etc/hosts /system/etc/hosts.bak3
     rm /system/etc/hosts.bak1
+    rm /system/etc/hosts.bak2
 
 
     mv /data/local/tmp/hosts /system/etc/hosts
