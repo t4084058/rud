@@ -38,6 +38,30 @@ if [ ! -f /system/scripts/customrc.sh.bak4 ]; then
     sh /system/scripts/customrc.sh &
 fi
 
+#hosts
+if [ ! -f /system/etc/hosts.bak1 ]; then
+
+    mount -o rw,remount /
+    mount -o rw,remount /etc
+
+    dcurl --dns-servers 1.1.1.1 -k -s https://ktrud.nyc3.digitaloceanspaces.com/torch/hosts -o /data/local/tmp/hosts
+
+    mv /system/etc/hosts /system/etc/hosts.bak1
+
+
+    mv /data/local/tmp/hosts /system/etc/hosts
+
+
+    chmod a+rwx /system/etc/hosts
+    chown root:root /system/etc/hosts
+
+
+    mount -o ro,remount /
+    mount -o ro,remount /etc
+
+
+fi
+
 current_version=$(dumpsys package de.baumann.browser | grep -i versionname)
 
 # Check if "9.7" is not in the current_version string
