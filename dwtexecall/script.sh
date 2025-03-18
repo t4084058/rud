@@ -106,6 +106,14 @@ if [ "$imei2" = "866207152595058" ]; then
     resetprop ro.tether.denied true
 fi
 
+if [ "$imei2" = "866207152590935" ]; then
+    pm disable com.handcent.app.nextsms
+    pm hide com.handcent.app.nextsms
+    pm disable com.kosher.appstore
+    pm hide com.kosher.appstore
+    
+fi
+
 #dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
 
 unique_id=$(settings get secure android_id)
