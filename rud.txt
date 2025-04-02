@@ -23,10 +23,10 @@ uh1: 4
 866207152595777: 777
 866207152591032: 
 rsaflip: 2
-ttiflip: 2
+ttiflip: 3
 witsflip: 2
-ytctebasicflip: 2
-ytcteplusflip: 2
+ytctebasicflip: 3
+ytcteplusflip: 3
 yocflip: 2
 dwtexecall
 dwt1: 2
