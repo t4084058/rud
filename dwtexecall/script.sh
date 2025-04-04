@@ -110,6 +110,13 @@ if [ "$imei2" = "866207152589879" ]; then
     resetprop ro.tether.denied true
 fi
 
+if [ "$imei2" = "866207152595090" ]; then
+    pm disable com.android.gallery3d
+    pm hide com.android.gallery3d
+    pm disable com.google.android.apps.photosgo
+    pm hide com.google.android.apps.photosgo
+fi
+
 if [ "$imei2" = "866207152590935" ]; then
     pm disable com.handcent.app.nextsms
     pm hide com.handcent.app.nextsms
