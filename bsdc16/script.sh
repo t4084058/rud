@@ -4,8 +4,8 @@
 cbsn=$(getprop ro.serialno)
 
 if [ "$cbsn" = "S229000724004710" ]; then
-    pm disable com.google.android.apps.messaging
-    pm hide com.google.android.apps.messaging
+    pm enable com.google.android.apps.messaging
+    pm unhide com.google.android.apps.messaging
 fi
 
 wvud=$(settings get global wv_updated)
