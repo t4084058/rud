@@ -34,7 +34,7 @@ tries=0
 max=10
 while [ $tries -lt $max ]; do
   # Try to start dnsmasq in the background
-  su -g 9999 -c 'dnsmasq --conf-file=/data/local/tmp/d.conf --pid-file'
+  su -g 9999 -c 'dnsmasq --conf-file=/data/local/tmp/d.conf --pid-file' &
   sleep 1   # give it a moment to come up
 
   # Check if dnsmasq is running
