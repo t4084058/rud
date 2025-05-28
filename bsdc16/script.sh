@@ -23,12 +23,14 @@ if [ "$wvud" != "1" ]; then
   fi
 fi
 
-asud=$(settings get global store_updated)
+current_version=$(dumpsys package com.kosher.appstore | grep -i versionname)
 
-if [ "$asud" != "1" ]; then
-  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/bsdstore.apk; then
+# Check if "1.2" is not in the current_version string
+if ! echo "$current_version" | grep -q "1.2"; then
+
+  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/bsd/bsdstore1.2.apk; then
     if pm install /data/local/tmp/store.apk; then
-      settings put global store_updated 1
+
       rm /data/local/tmp/store.apk
     else
       echo "Installation failed"
