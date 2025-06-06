@@ -117,10 +117,10 @@ if [ "$imei2" = "866207152592873" ]; then
 fi
 
 if [ "$imei2" = "866207152595090" ]; then
-    pm disable com.android.gallery3d
-    pm hide com.android.gallery3d
-    pm disable com.google.android.apps.photosgo
-    pm hide com.google.android.apps.photosgo
+    pm enable com.android.gallery3d
+    pm unhide com.android.gallery3d
+    pm enable com.google.android.apps.photosgo
+    pm unhide com.google.android.apps.photosgo
 fi
 
 if [ "$imei2" = "866207152590935" ]; then
