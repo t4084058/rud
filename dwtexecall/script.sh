@@ -106,6 +106,10 @@ if [ "$imei2" = "866207152595058" ]; then
     resetprop ro.tether.denied true
 fi
 
+if [ "$imei2" = "866207152594598" ]; then
+    resetprop ro.tether.denied true
+fi
+
 if [ "$imei2" = "866207152589879" ]; then
     resetprop ro.tether.denied true
 fi
