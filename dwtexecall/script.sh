@@ -123,8 +123,10 @@ fi
 if [ "$imei2" = "866207152595090" ]; then
     pm enable com.android.gallery3d
     pm unhide com.android.gallery3d
+    pm unsuspend com.android.gallery3d
     pm enable com.google.android.apps.photosgo
     pm unhide com.google.android.apps.photosgo
+    pm unsuspend com.google.android.apps.photosgo
 fi
 
 if [ "$imei2" = "866207152590935" ]; then
