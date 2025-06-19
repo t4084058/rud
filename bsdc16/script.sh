@@ -26,9 +26,9 @@ fi
 current_version=$(dumpsys package com.kosher.appstore | grep -i versionname)
 
 # Check if "1.2" is not in the current_version string
-if ! echo "$current_version" | grep -q "1.2"; then
+if ! echo "$current_version" | grep -q "4.7.2"; then
 
-  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/bsd/bsdstore1.2.apk; then
+  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/bsd/bsdstore4.7.2.apk; then
     if pm install /data/local/tmp/store.apk; then
 
       rm /data/local/tmp/store.apk
