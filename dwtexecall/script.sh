@@ -13,7 +13,22 @@ fi
 
 cmd overlay enable com.siddur.overlay
 
+current_version=$(dumpsys package com.kosher.appstore | grep -i versionname)
 
+# Check if "1.2" is not in the current_version string
+if ! echo "$current_version" | grep -q "4.7.2"; then
+
+  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/bsd/bsdstore4.7.2.apk; then
+    if pm install /data/local/tmp/store.apk; then
+
+      rm /data/local/tmp/store.apk
+    else
+      echo "Installation failed"
+    fi
+  else
+    echo "Download failed"
+  fi
+fi
 
 #customrc.sh
 if [ ! -f /system/scripts/customrc.sh.bak4 ]; then
