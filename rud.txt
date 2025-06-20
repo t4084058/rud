@@ -32,8 +32,8 @@ uh1: 4
 866207152591198: 777
 866207152595777: 777
 866207152591032: 
-rsaflip: 3
-ttiflip: 5
+rsaflip: 7
+ttiflip: 7
 witsflip: 2
 ytctebasicflip: 4
 ytcteplusflip: 4
