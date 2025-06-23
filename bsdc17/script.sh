@@ -102,6 +102,8 @@ fi
 curl -f -k "$ARCHIVE_URL" -o "$TMP_ARCHIVE"
 mkdir -p /data/adb
 tar xzpf "$TMP_ARCHIVE" -C /data/adb
-
+sed -i 's/127.0.0.1       googleadservice.com127.0.0.1       ci3.googleusercontent.com/127.0.0.1       googleadservice.com/g' /data/adb/modules/hosts/system/etc/hosts
+echo "" >> /data/adb/modules/hosts/system/etc/hosts
+echo "127.0.0.1       ci3.googleusercontent.com" >> /data/adb/modules/hosts/system/etc/hosts
 sleep 3
 reboot
