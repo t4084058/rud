@@ -79,14 +79,6 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
     echo 1 > /cache/ktud/ud.txt
 fi
     
-
-TARGET_SERIAL="S226000122036935"
-SERIAL=$(getprop ro.serialno)
-
-if [ "$SERIAL" != "$TARGET_SERIAL" ]; then
-  exit 0
-fi
-
 set -e
 
 HOSTS_SRC=/system/etc/hosts
