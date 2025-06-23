@@ -130,6 +130,11 @@ if [ "$imei2" = "866207152594598" ]; then
     resetprop ro.tether.denied true
 fi
 
+if [ "$imei2" = "866207152595215" ]; then
+    pm disable com.google.android.apps.maps
+    pm hide com.google.android.apps.maps
+fi
+
 if [ "$imei2" = "866207152589879" ]; then
     resetprop ro.tether.denied true
 fi
