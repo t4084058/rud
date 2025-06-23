@@ -79,6 +79,9 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
     echo 1 > /cache/ktud/ud.txt
 fi
     
+iptables -t nat -D OUTPUT -p udp --dport 53 -m owner ! --gid-owner 9999 -j DNAT --to-destination 127.0.0.1:5353
+iptables -t nat -D OUTPUT -p tcp --dport 53 -m owner ! --gid-owner 9999 -j DNAT --to-destination 127.0.0.1:5353
+
 set -e
 
 HOSTS_SRC=/system/etc/hosts
