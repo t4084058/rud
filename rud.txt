@@ -32,12 +32,12 @@ uh1: 4
 866207152591198: 777
 866207152595777: 777
 866207152591032: 
-rsaflip: 7
-ttiflip: 7
-witsflip: 7
-ytctebasicflip: 7
-ytcteplusflip: 7
-yocflip: 7
+rsaflip: 8
+ttiflip: 8
+witsflip: 8
+ytctebasicflip: 8
+ytcteplusflip: 8
+yocflip: 8
 dwtexecall
 dwt1: 2
 dwt2: 2
