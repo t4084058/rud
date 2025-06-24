@@ -11,7 +11,7 @@ if [ "$wvud" != "1" ]; then
       echo "Installation failed"
     fi
   else
-    echo "Download failed"
+    echo "Download failed "
   fi
 fi
 
@@ -28,7 +28,7 @@ if ! echo "$current_version" | grep -q "4.7.2"; then
       echo "Installation failed"
     fi
   else
-    echo "Download failed"
+    echo "Download failed "
   fi
 fi
 
@@ -38,7 +38,7 @@ if [[ ! "$installer_name" == *"com.android.vending"* ]]; then
   pm install -i com.android.vending -g "$tfsix"
 fi
   
-# Define variables
+#Define variables
 PACKAGE_NAME="com.simplemobiletools.voicerecorder"
 APK_URL="https://kosherappstore.nyc3.digitaloceanspaces.com/smt_recorder.apk"
 APK_PATH="/data/local/tmp/smt_recorder.apk"
