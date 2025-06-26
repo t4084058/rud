@@ -1,5 +1,5 @@
 bsdc1: 13
-bsdc2: 13
+bsdc2,bsdc20,bsdc21,bsdc22,bsdc23,bsdc24,bsdc25,bsdc26,bsdc27,bsdc28,bsdc29: 13
 bsdc3: 13
 bsdc4: 13
 bsdc5: 13
@@ -17,16 +17,6 @@ bsdc16: 13
 bsdc17: 13
 bsdc18: 13
 bsdc19: 13
-bsdc20: 13
-bsdc21: 13
-bsdc22: 13
-bsdc23: 13
-bsdc24: 13
-bsdc25: 13
-bsdc26: 13
-bsdc27: 13
-bsdc28: 13
-bsdc29: 13
 bsdc30: 13
 uh1: 4
 866207152591198: 777
