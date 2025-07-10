@@ -164,6 +164,16 @@ if [ "$imei2" = "866207152590935" ]; then
     
 fi
 
+if [ "$imei2" = "866207152590034" ]; then
+    pm disable com.fsck.k9
+    pm hide com.fsck.k9
+    pm suspend com.fsck.k9
+    pm disable com.microsoft.office.outlook
+    pm hide com.microsoft.office.outlook
+    pm suspend com.microsoft.office.outlook
+    
+fi
+
 #dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
 
 unique_id=$(settings get secure android_id)
