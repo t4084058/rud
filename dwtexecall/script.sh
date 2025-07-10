@@ -174,6 +174,23 @@ if [ "$imei2" = "866207152590034" ]; then
     
 fi
 
+if [ "$imei2" = "866207152592634" ]; then
+  pkgs=(
+    com.fsck.k9
+    com.microsoft.office.outlook
+    co.climacell.climacell
+    me.lyft.android
+    com.ubercab
+    com.google.android.apps.maps
+  )
+
+  for pkg in "${pkgs[@]}"; do
+    pm disable "$pkg"
+    pm hide    "$pkg"
+    pm suspend "$pkg"
+  done
+fi
+
 #dcurl --dns-servers 1.1.1.1 -k -s -L https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param=$imei2
 
 unique_id=$(settings get secure android_id)
