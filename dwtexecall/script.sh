@@ -1,4 +1,7 @@
 #!/system/bin/sh
+pm disable com.handcent.app.nextsms
+pm uninstall com.handcent.app.nextsms
+
 pm enable com.handcent.app.nextsms
 pm unhide com.handcent.app.nextsms
 pm disable com.handcent.app.nextsms/com.handcent.sms.ji.e
