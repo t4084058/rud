@@ -124,6 +124,10 @@ if [ "$imei2" = "866207152595058" ]; then
     resetprop ro.tether.denied true
 fi
 
+if [ "$imei2" = "866207152592949" ]; then
+    resetprop ro.tether.denied false
+fi
+
 if [ "$imei2" = "866207152589937" ]; then
     pm disable com.handcent.app.nextsms
     pm hide com.handcent.app.nextsms
