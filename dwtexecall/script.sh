@@ -140,6 +140,7 @@ fi
 if [ "$imei2" = "866207152595215" ]; then
     pm enable com.google.android.apps.maps
     pm unhide com.google.android.apps.maps
+	settings put global blocked_apps "$(settings get global blocked_apps | tr ';' '\n' | grep -vx 'com.google.android.apps.maps' | sed '/^$/d' | paste -sd';' -)"
     pm disable com.handcent.app.nextsms
     pm hide com.handcent.app.nextsms
 fi
