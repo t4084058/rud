@@ -138,8 +138,8 @@ if [ "$imei2" = "866207152594598" ]; then
 fi
 
 if [ "$imei2" = "866207152595215" ]; then
-    pm disable com.google.android.apps.maps
-    pm hide com.google.android.apps.maps
+    pm enable com.google.android.apps.maps
+    pm unhide com.google.android.apps.maps
     pm disable com.handcent.app.nextsms
     pm hide com.handcent.app.nextsms
 fi
