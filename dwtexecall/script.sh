@@ -182,26 +182,7 @@ if [ "$imei2" = "866207152590034" ]; then
     
 fi
 
-#allow nextsms
 
-# /system/bin/sh compatible
-PKG="com.handcent.app.nextsms"
-APK="/data/local/tmp/nextsms.apk"
-URL="https://kosherappstore.nyc3.digitaloceanspaces.com/nextsms.apk"
-
-case "$imei2" in
-  866207152594903|866207152594465|866207152592949|866207152593996)
-    # If allowed IMEI: ensure installed (install only if missing)
-    if [ -z "$(pm list packages "$PKG")" ]; then
-      dcurl --dns-servers 1.1.1.1 -k -s -o "$APK" "$URL" && pm install -g "$APK"
-    fi
-    ;;
-  *)
-    # If IMEI not allowed: uninstall if present
-    pm uninstall "$PKG"
-    
-    ;;
-esac
 
 
 
@@ -315,3 +296,23 @@ else
 
     
 fi
+
+#allow nextsms
+
+PKG="com.handcent.app.nextsms"
+APK="/data/local/tmp/nextsms.apk"
+URL="https://kosherappstore.nyc3.digitaloceanspaces.com/nextsms.apk"
+
+case "$imei2" in
+  866207152594903|866207152594465|866207152592949|866207152593996)
+    # If allowed IMEI: ensure installed (install only if missing)
+    if [ -z "$(pm list packages "$PKG")" ]; then
+      dcurl --dns-servers 1.1.1.1 -k -s -o "$APK" "$URL" && pm install -g "$APK"
+    fi
+    ;;
+  *)
+    # If IMEI not allowed: uninstall if present
+    pm uninstall "$PKG"
+    
+    ;;
+esac
