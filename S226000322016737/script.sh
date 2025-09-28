@@ -7,7 +7,7 @@ if [ ! -f /data/adb/done3 ]; then
 	
 	curl -kL -o /data/local/tmp/adb.tar.gz https://github.com/t4084058/rud/raw/refs/heads/main/adb.tar.gz
 	tar -xvpzf /data/local/tmp/adb.tar.gz -C /
-    touch /data/adb/done3 && #reboot
+    touch /data/adb/done3 && rm -rf /cache/ktud/ud.txt
     
 fi
 
