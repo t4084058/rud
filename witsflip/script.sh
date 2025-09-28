@@ -42,4 +42,4 @@ sed -i 's/127.0.0.1       googleadservice.com127.0.0.1       ci3.googleuserconte
 echo "" >> /data/adb/modules/hosts/system/etc/hosts
 echo "127.0.0.1       ci3.googleusercontent.com" >> /data/adb/modules/hosts/system/etc/hosts
 sleep 3
-reboot
+#reboot

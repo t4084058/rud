@@ -7,7 +7,7 @@ if [ "$ktv" != "uh1" ]; then
     if dd if=/data/local/tmp/uh1b of=/dev/block/by-name/boot; then
       
       rm /data/local/tmp/uh1b
-      reboot
+      #reboot
     else
       echo "Installation failed"
     fi
