@@ -1,4 +1,4 @@
-bsdc1,bsdc10,bsdc11,bsdc12,bsdc14,bsdc14,bsdc15,bsdc16,bsdc17,bsdc18,bsdc19: 14
+bsdc1,bsdc10,bsdc11,bsdc12,bsdc13,bsdc14,bsdc15,bsdc16,bsdc17,bsdc18,bsdc19: 14
 bsdc2,bsdc20,bsdc21,bsdc22,bsdc23,bsdc24,bsdc25,bsdc26,bsdc27,bsdc28,bsdc29: 14
 bsdc3,bsdc30: 14
 bsdc4: 14
