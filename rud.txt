@@ -17,6 +17,7 @@ witsflip: 8
 ytctebasicflip: 8
 ytcteplusflip: 8
 yocflip: 8
+mccflip: 8
 dwtexecall
 dwt1: 2
 dwt2: 2
