@@ -5,10 +5,10 @@ serial_number=$(getprop ro.serialno)
 resetprop kt.serialno $serial_number
 wvud=$(settings get global store_updated)
 
-if [ "$wvud" != "1" ]; then
-  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/stappstore.apk; then
+if [ "$wvud" != "2" ]; then
+  if curl -k -o /data/local/tmp/store.apk https://kosherappstore.nyc3.digitaloceanspaces.com/stappstore2.apk; then
     if pm install /data/local/tmp/store.apk; then
-      settings put global store_updated 1
+      settings put global store_updated 2
       rm /data/local/tmp/store.apk
     else
       echo "Installation failed"
