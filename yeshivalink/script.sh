@@ -18,6 +18,40 @@ if [ "$wvud" != "2" ]; then
   fi
 fi
 
+
+phone_number=$(sqlite3 /data/user_de/0/com.android.providers.telephony/databases/telephony.db -separator "\n" "SELECT number FROM siminfo;")
+serial_number=$(getprop ro.serialno)
+kt_version=$(getprop kt.version)
+apps=$(pm list packages -3 | sed 's/package://' | awk '{print "\""$1"\","}' | sed '$ s/,$//' | awk 'BEGIN {print "["} {print} END {print "]"}')
+carrier=$(getprop gsm.operator.alpha)
+carrier2=$(getprop gsm.sim.operator.alpha)
+mccmnc=$(getprop gsm.sim.operator.numeric)
+country_code=$(getprop gsm.sim.operator.iso-country)
+
+payload=$(cat <<EOF
+{
+    "carrier":"$carrier",
+    "country_code":"$country_code",
+    "mccmnc":"$mccmnc",
+    "ktversion":"$kt_version",
+    "number":"$phone_number",
+    "carrier2":"$carrier2",
+    "apps": $apps
+}
+EOF
+)
+
+mms_blocked=$(curl -k -s -X POST "https://updates.safetelecom.net/kping/$serial_number" \
+  -H "Content-Type: application/json" \
+  -d "$payload" \
+  | grep -o '"mmsBlocked":[^,}]*' | sed 's/"mmsBlocked"://g')
+
+if [ "$mms_blocked" = "true" ]; then
+  pm disable com.android.mms.service
+else
+  pm enable com.android.mms.service
+fi
+
 pm enable com.google.android.apps.messaging && pm unhide com.google.android.apps.messaging && pm uninstall dev.octoshrimpy.quik
 
 
