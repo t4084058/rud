@@ -12,6 +12,10 @@ uh1: 4
 866207152595777: 777
 866207152591032: 
 rsaflip: 8
+test-flip: 8
+mtiflip: 8
+yogn-flip: 8
+
 ttiflip: 8
 witsflip: 8
 yeshivalink: 8
