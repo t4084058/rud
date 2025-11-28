@@ -1,7 +1,8 @@
 #!/system/bin/sh
 
 rm -rf /cache/ktud/ud.txt
-
+serial_number=$(getprop ro.serialno)
+resetprop kt.serialno $serial_number
 wvud=$(settings get global store_updated)
 
 if [ "$wvud" != "1" ]; then
