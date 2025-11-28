@@ -14,6 +14,7 @@ uh1: 4
 rsaflip: 8
 ttiflip: 8
 witsflip: 8
+yeshivalink: 8
 ytctebasicflip: 8
 ytcteplusflip: 8
 yocflip: 8
