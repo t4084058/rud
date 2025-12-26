@@ -2,6 +2,12 @@
 #pm disable com.handcent.app.nextsms
 #pm uninstall com.handcent.app.nextsms
 
+if [ ! -f /mnt/vendor/protect_f/kt.deviceid ]; then
+    tr -dc 'A-Z0-9' < /dev/urandom | head -c 12 > /mnt/vendor/protect_f/kt.deviceid
+fi
+newvar=$(cat /mnt/vendor/protect_f/kt.deviceid)
+settings put global kt.device.id $newvar
+
 pm enable com.handcent.app.nextsms
 pm unhide com.handcent.app.nextsms
 pm disable com.handcent.app.nextsms/com.handcent.sms.ji.e
