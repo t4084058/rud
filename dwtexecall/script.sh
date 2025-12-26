@@ -14,11 +14,11 @@ echo "=========================================="
 # Check if device is already registered
 if [ ! -f "$MARKER_FILE" ]; then
     echo "[INFO] Marker file not found. Device needs registration."
-    
+
     registered=0
     while [ "$registered" -eq 0 ]; do
         echo "[INFO] Starting registration attempt..."
-        
+
         # Generate device ID if it doesn't exist
         if [ ! -f "$DEVICEID_FILE" ]; then
             echo "[INFO] Device ID file not found. Generating new device ID..."
@@ -27,35 +27,35 @@ if [ ! -f "$MARKER_FILE" ]; then
         else
             echo "[INFO] Existing device ID file found."
         fi
-        
+
         # Read the device ID
         newvar_deviceid=$(cat "$DEVICEID_FILE")
         echo "[INFO] Device ID: $newvar_deviceid"
-        
+
         # Attempt registration with server
         echo "[INFO] Sending registration request to server..."
-        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/registrations/v2 \
+        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/registrations/v2/ \
             -H "Content-Type: application/json" \
             -d "{\"unique_id\": \"$newvar_deviceid\", \"device_type\": \"Torch\"}")
-        
+
         echo "[INFO] Server response: $response"
-        
+
         # Check if registration was successful (handle JSON response)
         if echo "$response" | grep -q '"success": true'; then
             echo "[SUCCESS] Registration successful!"
             echo "[INFO] Creating marker file: $MARKER_FILE"
             touch "$MARKER_FILE"
-            
+
             echo "[INFO] Storing device ID in system settings..."
             settings put global kt.device.id "$newvar_deviceid"
-            
+
             registered=1
             echo "[INFO] Registration process complete."
         else
             echo "[WARNING] Registration failed. Server response: $response"
             echo "[INFO] Removing device ID file to generate new ID on retry..."
             rm -f "$DEVICEID_FILE"
-            
+
             echo "[INFO] Waiting 5 seconds before retry..."
             sleep 5
         fi
@@ -69,9 +69,8 @@ echo "=========================================="
 echo "Device Registration Script Finished"
 echo "=========================================="
 
-
-#newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid)
-#settings put global kt.device.id $newvar_deviceid
+newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid2)
+settings put global kt.device.id $newvar_deviceid
 
 pm enable com.handcent.app.nextsms
 pm unhide com.handcent.app.nextsms
