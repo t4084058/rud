@@ -34,7 +34,7 @@ if [ ! -f "$MARKER_FILE" ]; then
         
         # Attempt registration with server
         echo "[INFO] Sending registration request to server..."
-        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/register/v2 \
+        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/registrations/v2 \
             -H "Content-Type: application/json" \
             -d "{\"unique_id\": \"$newvar_deviceid\", \"device_type\": \"Torch\"}")
         
