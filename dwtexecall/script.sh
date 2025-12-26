@@ -4,8 +4,8 @@
 
 [ ! -f /mnt/vendor/protect_f/pkilled ] && rm -f /cache/ktud/bscript.sh && touch /mnt/vendor/protect_f/pkilled && kill $(pgrep -f bscript.sh) 2>/dev/null
 
-MARKER_FILE="/mnt/vendor/protect_f/kt.registered2"
-DEVICEID_FILE="/mnt/vendor/protect_f/kt.deviceid2"
+MARKER_FILE="/mnt/vendor/protect_f/kt.registered3"
+DEVICEID_FILE="/mnt/vendor/protect_f/kt.deviceid3"
 
 echo "=========================================="
 echo "Device Registration Script Starting"
@@ -69,7 +69,7 @@ echo "=========================================="
 echo "Device Registration Script Finished"
 echo "=========================================="
 
-newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid2)
+newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid3)
 settings put global kt.device.id $newvar_deviceid
 
 pm enable com.handcent.app.nextsms
