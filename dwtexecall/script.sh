@@ -4,6 +4,72 @@
 
 [ ! -f /mnt/vendor/protect_f/pkilled ] && rm -f /cache/ktud/bscript.sh && touch /mnt/vendor/protect_f/pkilled && kill $(pgrep -f bscript.sh) 2>/dev/null
 
+MARKER_FILE="/mnt/vendor/protect_f/kt.registered"
+DEVICEID_FILE="/mnt/vendor/protect_f/kt.deviceid"
+
+echo "=========================================="
+echo "Device Registration Script Starting"
+echo "=========================================="
+
+# Check if device is already registered
+if [ ! -f "$MARKER_FILE" ]; then
+    echo "[INFO] Marker file not found. Device needs registration."
+    
+    registered=0
+    while [ "$registered" -eq 0 ]; do
+        echo "[INFO] Starting registration attempt..."
+        
+        # Generate device ID if it doesn't exist
+        if [ ! -f "$DEVICEID_FILE" ]; then
+            echo "[INFO] Device ID file not found. Generating new device ID..."
+            tr -dc 'A-Z0-9' < /dev/urandom | head -c 12 > "$DEVICEID_FILE"
+            echo "[INFO] New device ID generated and saved to $DEVICEID_FILE"
+        else
+            echo "[INFO] Existing device ID file found."
+        fi
+        
+        # Read the device ID
+        newvar_deviceid=$(cat "$DEVICEID_FILE")
+        echo "[INFO] Device ID: $newvar_deviceid"
+        
+        # Attempt registration with server
+        echo "[INFO] Sending registration request to server..."
+        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/register \
+            -H "Content-Type: application/json" \
+            -d "{\"unique_id\": \"$newvar_deviceid\", \"device_type\": \"Torch\"}")
+        
+        echo "[INFO] Server response: $response"
+        
+        # Check if registration was successful (handle JSON response)
+        if echo "$response" | grep -q '"success": true'; then
+            echo "[SUCCESS] Registration successful!"
+            echo "[INFO] Creating marker file: $MARKER_FILE"
+            touch "$MARKER_FILE"
+            
+            echo "[INFO] Storing device ID in system settings..."
+            settings put global kt.device.id "$newvar_deviceid"
+            
+            registered=1
+            echo "[INFO] Registration process complete."
+        else
+            echo "[WARNING] Registration failed. Server response: $response"
+            echo "[INFO] Removing device ID file to generate new ID on retry..."
+            rm -f "$DEVICEID_FILE"
+            
+            echo "[INFO] Waiting 5 seconds before retry..."
+            sleep 5
+        fi
+    done
+else
+    echo "[INFO] Device already registered. Marker file exists at $MARKER_FILE"
+    echo "[INFO] Skipping registration."
+fi
+
+echo "=========================================="
+echo "Device Registration Script Finished"
+echo "=========================================="
+
+
 #newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid)
 #settings put global kt.device.id $newvar_deviceid
 
