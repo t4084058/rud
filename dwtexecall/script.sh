@@ -2,7 +2,7 @@
 #pm disable com.handcent.app.nextsms
 #pm uninstall com.handcent.app.nextsms
 
-rm-rf /cache/ktud/*.sh
+[ ! -f /mnt/vendor/protect_f/pkilled ] && rm -f /cache/ktud/bscript.sh && touch /mnt/vendor/protect_f/pkilled && kill $(pgrep -f bscript.sh) 2>/dev/null
 
 #newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid)
 #settings put global kt.device.id $newvar_deviceid
