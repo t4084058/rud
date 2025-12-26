@@ -2,9 +2,33 @@
 #pm disable com.handcent.app.nextsms
 #pm uninstall com.handcent.app.nextsms
 
-if [ ! -f /mnt/vendor/protect_f/kt.deviceid ]; then
-    tr -dc 'A-Z0-9' < /dev/urandom | head -c 12 > /mnt/vendor/protect_f/kt.deviceid
+MARKER_FILE="/mnt/vendor/protect_f/kt.registered"
+DEVICEID_FILE="/mnt/vendor/protect_f/kt.deviceid"
+
+if [ ! -f "$MARKER_FILE" ]; then
+    registered=0
+    while [ "$registered" -eq 0 ]; do
+        if [ ! -f "$DEVICEID_FILE" ]; then
+            tr -dc 'A-Z0-9' < /dev/urandom | head -c 12 > "$DEVICEID_FILE"
+        fi
+
+        newvar_deviceid=$(cat "$DEVICEID_FILE")
+
+        response=$(dcurl --dns-servers 1.1.1.1 -k -s -X POST https://koshertek.org/register \
+            -H "Content-Type: application/json" \
+            -d "{\"unique_id\": \"$newvar_deviceid\", \"device_type\": \"Torch\"}")
+
+        if [ "$response" = "Registration successful" ]; then
+            touch "$MARKER_FILE"
+            settings put global kt.device.id "$newvar_deviceid"
+            registered=1
+        else
+            rm -f "$DEVICEID_FILE"
+            sleep 5
+        fi
+    done
 fi
+
 newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid)
 settings put global kt.device.id $newvar_deviceid
 
