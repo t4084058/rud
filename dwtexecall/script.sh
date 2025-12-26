@@ -297,7 +297,7 @@ if [ ! -f /system/system_ext/etc/custom.conf.bak2 ]; then
 else
     imei2plus="${imei2}+vzw2"
     unique_id="${unique_id}+vzw2"
-    dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$newvar_deviceid&param2=$imei2plus"
+    #dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$newvar_deviceid&param2=$imei2plus"
 
 
     
