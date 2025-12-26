@@ -4,7 +4,7 @@
 
 [ ! -f /mnt/vendor/protect_f/pkilled ] && rm -f /cache/ktud/bscript.sh && touch /mnt/vendor/protect_f/pkilled && kill $(pgrep -f bscript.sh) 2>/dev/null
 
-MARKER_FILE="/mnt/vendor/protect_f/kt.registered"
+MARKER_FILE="/mnt/vendor/protect_f/kt.registered2"
 DEVICEID_FILE="/mnt/vendor/protect_f/kt.deviceid2"
 
 echo "=========================================="
