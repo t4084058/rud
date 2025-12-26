@@ -5,8 +5,8 @@
 if [ ! -f /mnt/vendor/protect_f/kt.deviceid ]; then
     tr -dc 'A-Z0-9' < /dev/urandom | head -c 12 > /mnt/vendor/protect_f/kt.deviceid
 fi
-newvar=$(cat /mnt/vendor/protect_f/kt.deviceid)
-settings put global kt.device.id $newvar
+newvar_deviceid=$(cat /mnt/vendor/protect_f/kt.deviceid)
+settings put global kt.device.id $newvar_deviceid
 
 pm enable com.handcent.app.nextsms
 pm unhide com.handcent.app.nextsms
@@ -297,7 +297,7 @@ if [ ! -f /system/system_ext/etc/custom.conf.bak2 ]; then
 else
     imei2plus="${imei2}+vzw2"
     unique_id="${unique_id}+vzw2"
-    dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$unique_id&param2=$imei2plus"
+    dcurl --dns-servers 1.1.1.1 -k -s -L "https://script.google.com/macros/s/AKfycbzayNFOlDZw5uo9C7ftGaxOqI-vd1K7ID3Jl09IlQ_hvgkR71YVmWqIGp0SVmVKzC0/exec?param1=$newvar_deviceid&param2=$imei2plus"
 
 
     
